@@ -1,8 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./public/index.html', './src/*.js'],
+  content: ['./public/index.html', './src/*.js', './src/components/*.js'],
   theme: {
-    extend: {},
+    extend: {
+      'max-w': {
+        'custom-wide': '32rem',
+      },
+    },
   },
   plugins: [],
 }
