@@ -3,6 +3,7 @@ import Loading from './Loading'
 import PostSection from './PostSection'
 import CommentSection from './CommentSection'
 import { getPath } from '../util'
+import ErrorDisplay from './ErrorDisplay'
 
 export default function MainContent() {
   /*useEffect(() => {
@@ -16,26 +17,26 @@ export default function MainContent() {
 
   useEffect(() => {
     ;(async function () {
-      setPosts(await getPath('/api/posts'))
+      try {
+        const data = await getPath('/api/posts')
+        setPosts(data)
 
-      setLoadingPosts(false)
+        setLoadingPosts(false)
+      } catch (err) {
+        setLoadingPosts(false)
+      }
     })()
   }, [])
 
   return (
     <div className="w-full flex justify-center flex-col">
-      {loadingPosts ? <Loading /> : <PostSection posts={posts} />}
+      {loadingPosts ? (
+        <Loading />
+      ) : posts.length ? (
+        <PostSection posts={posts} />
+      ) : (
+        <ErrorDisplay message="Failed to retrieve post from database" />
+      )}
     </div>
   )
-
-  return loadingPosts ? <Loading /> : <PostSection posts={posts} />
-
-  /*return (
-    <div className="w-full flex justify-center flex-col">
-      <Suspense fallback={<div>Waiting...</div>}>
-        <ArticleSection articles={articles} />
-      </Suspense>
-      <CommentSection />
-    </div>
-  )*/
 }

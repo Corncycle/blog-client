@@ -1,5 +1,33 @@
 import React from 'react'
+import SideBarMonth from './SideBarMonth'
 
-export default function SideBar() {
-  return <div className="absolute right-0 top-0 bg-zinc-300">The Side Bar</div>
+export default function SideBar({ data }) {
+  const yearNodes = []
+  const years = Object.keys(data).sort().reverse()
+  for (const year of years) {
+    const monthNodes = []
+    for (const month of Object.keys(data[year])) {
+      monthNodes.push(
+        <SideBarMonth year={year} month={month} count={data[year][month]} />,
+      )
+    }
+
+    const yearTotal = Object.values(data[year]).reduce(
+      (a, b) => Number(a) + Number(b),
+      0,
+    )
+    const yearNode = (
+      <h3>
+        <details>
+          <summary>
+            <span>{year + ': ' + yearTotal}</span>
+          </summary>
+          <div className="ml-2">{monthNodes}</div>
+        </details>
+      </h3>
+    )
+    yearNodes.push(yearNode)
+  }
+
+  return <div>{yearNodes}</div>
 }
