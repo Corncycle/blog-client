@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Loading from './Loading'
 import ErrorDisplay from './ErrorDisplay'
 import { getPath } from '../util'
+import { Link } from 'react-router-dom'
 
 const monthsLookup = {
   1: 'January',
@@ -57,11 +58,15 @@ export default function SideBarMonth({ year, month, count }) {
         <ErrorDisplay message="blah" />
       ) : (
         <div>
-          {posts.map((post) => {
+          {posts.map((post, i) => {
             return (
-              <a className="block text-blue-800" href={`/posts/${post.slug}`}>
+              <Link
+                to={`posts/${post.slug}`}
+                className="block text-blue-700 underline"
+                key={year * 1000 + month * 10 + i}
+              >
                 {post.title}
-              </a>
+              </Link>
             )
           })}
         </div>

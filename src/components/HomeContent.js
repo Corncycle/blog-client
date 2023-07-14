@@ -1,17 +1,11 @@
 import React, { useState, useEffect, Suspense, use } from 'react'
 import Loading from './Loading'
-import PostSection from './PostSection'
+import HomeContentPosts from './HomeContentPosts'
 import CommentSection from './CommentSection'
 import { getPath } from '../util'
 import ErrorDisplay from './ErrorDisplay'
 
-export default function MainContent() {
-  /*useEffect(() => {
-    //const prommy = getPath('/api/posts')
-    //console.log(prommy)
-    //setArticles(prommy)
-  }, [])*/
-
+export default function HomeContent() {
   const [posts, setPosts] = useState([])
   const [loadingPosts, setLoadingPosts] = useState(true)
 
@@ -33,7 +27,7 @@ export default function MainContent() {
       {loadingPosts ? (
         <Loading />
       ) : posts.length ? (
-        <PostSection posts={posts} />
+        <HomeContentPosts posts={posts} />
       ) : (
         <ErrorDisplay message="Failed to retrieve post from database" />
       )}
