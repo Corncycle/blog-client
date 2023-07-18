@@ -6,7 +6,12 @@ export default function SideBar({ data }) {
   const years = Object.keys(data).sort().reverse()
   for (const year of years) {
     const monthNodes = []
-    for (const month of Object.keys(data[year])) {
+    console.log('years')
+    const sortedMonths = Object.keys(data[year]).sort(
+      (a, b) => Number(b) - Number(a),
+    )
+    console.log(sortedMonths)
+    for (const month of sortedMonths) {
       monthNodes.push(
         <SideBarMonth
           year={year}
@@ -24,10 +29,10 @@ export default function SideBar({ data }) {
     const yearNode = (
       <h3 key={year}>
         <details>
-          <summary>
+          <summary className="cursor-default">
             <span>{`${year} (${yearTotal})`}</span>
           </summary>
-          <div className="ml-4">{monthNodes}</div>
+          <div className="ml-4 cursor-default">{monthNodes}</div>
         </details>
       </h3>
     )

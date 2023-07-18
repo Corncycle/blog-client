@@ -7,6 +7,7 @@ import ErrorDisplay from './components/ErrorDisplay'
 import { getPath } from './util'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import PostFull from './components/PostFull'
+import NewPostContent from './components/NewPostContent'
 
 const App = () => {
   const location = useLocation()
@@ -31,22 +32,27 @@ const App = () => {
     <div className="w-full">
       <div>
         <TopBar></TopBar>
-        <div className="relative">
-          <div className="block max-w-xl bg-red-600 m-auto">
+        <div className="relative flex flex-col-reverse lg:block">
+          <div className="block max-w-3xl bg-red-600 m-auto">
             <Routes>
-              <Route path="*" element={<div>Unknown path!</div>} />
               <Route path="/" element={<HomeContent />} />
-              <Route
-                path="/test"
-                element={<div>Test element for routing testing</div>}
-              />
+              <Route path="/posts/new" element={<NewPostContent />} />
               <Route
                 path="/posts/:slug"
                 element={<PostFull location={location} />}
               />
+              <Route
+                path="/*"
+                element={
+                  <div>
+                    Unknown path! Try selecting a post from the sidebar, or
+                    returning the home page.
+                  </div>
+                }
+              />
             </Routes>
           </div>
-          <div className="absolute right-0 top-0 bg-zinc-300">
+          <div className="p-2 lg:absolute text-sm lg:right-0 lg:top-0 lg:w-48 bg-zinc-300">
             {loadingSideData ? (
               <Loading />
             ) : Object.keys(sideData).length === 0 ? (

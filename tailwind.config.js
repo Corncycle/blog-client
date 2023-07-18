@@ -6,6 +6,9 @@ module.exports = {
       'max-w': {
         'custom-wide': '32rem',
       },
+      textIndent: {
+        reverse: '-1rem',
+      },
     },
   },
   plugins: [],

@@ -32,11 +32,13 @@ export default function SideBarMonth({ year, month, count }) {
   useEffect(() => {
     if (isLoading) {
       ;(async function () {
-        const postsData = await getPath(
-          `/api/postsByMonth/${year}${month.padStart(2, '0')}`,
-        )
-        setPosts(postsData)
-        setIsLoading(false)
+        try {
+          const postsData = await getPath(
+            `/api/postsByMonth/${year}${month.padStart(2, '0')}`,
+          )
+          setPosts(postsData.reverse())
+          setIsLoading(false)
+        } catch (err) {}
       })()
     }
   }, [isLoading])
@@ -62,7 +64,7 @@ export default function SideBarMonth({ year, month, count }) {
             return (
               <Link
                 to={`posts/${post.slug}`}
-                className="block text-blue-700 underline"
+                className="block text-blue-700 underline -indent-4 ml-6"
                 key={year * 1000 + month * 10 + i}
               >
                 {post.title}
