@@ -1,8 +1,9 @@
 export async function getPath(path) {
   try {
-    console.log(`Making request to http://localhost:3000${path}`)
-    const res = await fetch(`http://${location.hostname}:3000${path}`)
+    console.log(`Making request to ${API_ACCESS_POINT}${path}`)
+    const res = await fetch(`${API_ACCESS_POINT}${path}`)
     const data = await res.json()
+    console.log(data)
     return data
   } catch (err) {
     throw err

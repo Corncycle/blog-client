@@ -17,6 +17,7 @@ export default function HomeContent() {
 
         setLoadingPosts(false)
       } catch (err) {
+        console.log(err)
         setLoadingPosts(false)
       }
     })()
@@ -29,7 +30,7 @@ export default function HomeContent() {
       ) : posts.length ? (
         <HomeContentPosts posts={posts} />
       ) : (
-        <ErrorDisplay message="Failed to retrieve post from database" />
+        <ErrorDisplay message="Failed to retrieve recent posts from database" />
       )}
     </div>
   )
