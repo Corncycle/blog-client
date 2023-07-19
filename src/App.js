@@ -18,7 +18,7 @@ const App = () => {
   useEffect(() => {
     ;(async function () {
       try {
-        const data = await getPath('/api/postsByMonth')
+        const data = await getPath('/postsByMonth')
 
         setSideData(data)
         setLoadingSideData(false)
@@ -33,7 +33,7 @@ const App = () => {
       <div>
         <TopBar></TopBar>
         <div className="relative flex flex-col-reverse lg:block">
-          <div className="block max-w-3xl bg-red-600 m-auto">
+          <div className="block max-w-3xl m-auto">
             <Routes>
               <Route path="/" element={<HomeContent />} />
               <Route path="/posts/new" element={<NewPostContent />} />
@@ -51,7 +51,7 @@ const App = () => {
               />
             </Routes>
           </div>
-          <div className="p-2 lg:absolute text-sm lg:right-0 lg:top-0 lg:w-48 bg-zinc-300">
+          <div className="p-2 lg:absolute text-sm lg:right-0 lg:top-0 lg:w-48">
             {loadingSideData ? (
               <Loading />
             ) : Object.keys(sideData).length === 0 ? (

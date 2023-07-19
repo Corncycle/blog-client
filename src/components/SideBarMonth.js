@@ -28,7 +28,7 @@ export default function SideBarMonth({ year, month, count }) {
       ;(async function () {
         try {
           const postsData = await getPath(
-            `/api/postsByMonth/${year}${month.padStart(2, '0')}`,
+            `/postsByMonth/${year}${month.padStart(2, '0')}`,
           )
           setPosts(postsData.reverse())
           setIsLoading(false)

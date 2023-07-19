@@ -12,7 +12,7 @@ export default function HomeContent() {
   useEffect(() => {
     ;(async function () {
       try {
-        const data = await getPath('/api/posts')
+        const data = await getPath('/posts')
         setPosts(data)
 
         setLoadingPosts(false)
