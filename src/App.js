@@ -45,8 +45,7 @@ const App = () => {
                 path="/*"
                 element={
                   <div>
-                    Unknown path! Try selecting a post from the sidebar, or
-                    returning the home page.
+                    {`Unknown path '${location.pathname}' Try selecting a post from the sidebar, or returning the home page.`}
                   </div>
                 }
               />

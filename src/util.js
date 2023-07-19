@@ -3,7 +3,6 @@ export async function getPath(path) {
     console.log(`Making request to ${API_ACCESS_POINT}${path}`)
     const res = await fetch(`${API_ACCESS_POINT}${path}`)
     const data = await res.json()
-    console.log(data)
     return data
   } catch (err) {
     throw err

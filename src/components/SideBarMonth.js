@@ -24,12 +24,6 @@ export default function SideBarMonth({ year, month, count }) {
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
-    ;(async function () {
-      console.log()
-    })()
-  }, [])
-
-  useEffect(() => {
     if (isLoading) {
       ;(async function () {
         try {
