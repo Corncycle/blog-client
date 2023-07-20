@@ -1,7 +1,24 @@
 export async function getPath(path) {
   try {
-    console.log(`Making request to ${API_ACCESS_POINT}${path}`)
+    console.log(`Making GET request to ${API_ACCESS_POINT}${path}`)
     const res = await fetch(`${API_ACCESS_POINT}${path}`)
+    const data = await res.json()
+    return data
+  } catch (err) {
+    throw err
+  }
+}
+
+export async function postPath(path, reqbody) {
+  try {
+    console.log(`Making POST request to ${API_ACCESS_POINT}${path}`)
+    const res = await fetch(`${API_ACCESS_POINT}${path}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(reqbody),
+    })
     const data = await res.json()
     return data
   } catch (err) {
@@ -28,4 +45,16 @@ export function slugify(str) {
     .replace(/-+/g, '-') // collapse dashes
 
   return str
+}
+
+// debounce function provided by freecodecamp author 'Ondrej Polesny'
+// https://www.freecodecamp.org/news/javascript-debounce-example/
+export function debounce(func, timeout = 300) {
+  let timer
+  return (...args) => {
+    clearTimeout(timer)
+    timer = setTimeout(() => {
+      func.apply(null, args)
+    }, timeout)
+  }
 }

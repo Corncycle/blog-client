@@ -37,5 +37,5 @@ export default function SideBar({ data }) {
     yearNodes.push(yearNode)
   }
 
-  return <div>{yearNodes}</div>
+  return <div className="sidebar p-2 text-sm">{yearNodes}</div>
 }
