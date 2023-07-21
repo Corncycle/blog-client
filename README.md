@@ -1,3 +1,5 @@
 # blog-client
 
-Coming soon!
+The front-end for my single-page blog, built with React and Tailwind.
+
+Live: https://blog.calebstromberg.com
