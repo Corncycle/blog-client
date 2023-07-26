@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import InputItem from './InputItem'
-import { slugify } from '../util'
+import { postPath, slugify } from '../util'
+import { compileWithRichMarkdown } from '../parser/rich-markdown'
+import debounce from 'lodash.debounce'
 
 export default function NewPostContent() {
   const [disableInput, setDisableInput] = useState(false)
@@ -11,6 +13,19 @@ export default function NewPostContent() {
   const [title, setTitle] = useState('')
   const [subtitle, setSubtitle] = useState('')
   const [body, setBody] = useState('')
+
+  const [preview, setPreview] = useState('')
+
+  const handlePreview = useCallback(
+    debounce((body) => {
+      setPreview(compileWithRichMarkdown(body))
+    }, 500),
+    [],
+  )
+
+  useEffect(() => {
+    handlePreview(body)
+  }, [body])
 
   if (showingResult) {
     return (
@@ -45,7 +60,6 @@ export default function NewPostContent() {
         <form
           onSubmit={async (e) => {
             e.preventDefault()
-            console.log(authorization, title, subtitle, body)
             if (!authorization || !title || !subtitle || !body) {
               // all fields must be filled, don't proceed
               return
@@ -56,24 +70,14 @@ export default function NewPostContent() {
               title,
               slug: slugify(title),
               subtitle,
-              body,
+              body: preview,
             }
 
             setDisableInput(true)
 
             let response
             try {
-              response = await fetch(
-                `http://${location.hostname}:3000/api/posts/new`,
-                {
-                  method: 'POST',
-                  headers: {
-                    'Content-Type': 'application/json',
-                  },
-                  body: JSON.stringify(reqbody),
-                },
-              )
-              const res = await response.json()
+              const res = await postPath('/posts/new', reqbody)
               setResult(res)
             } catch (err) {
               setResult({ error: 'Failed to reach database' })
@@ -114,6 +118,13 @@ export default function NewPostContent() {
               label="Body"
               isLarge={true}
               required={true}
+            />
+          </div>
+          <div className="flex flex-col">
+            <span>Preview:</span>
+            <div
+              className="post-body-view"
+              dangerouslySetInnerHTML={{ __html: preview }}
             />
           </div>
           <button>Make post</button>

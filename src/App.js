@@ -51,7 +51,7 @@ const App = () => {
               />
             </Routes>
           </div>
-          <div className="p-2 lg:absolute text-sm lg:right-0 lg:top-0 lg:w-48">
+          <div className="lg:absolute lg:right-0 lg:top-0 lg:w-48">
             {loadingSideData ? (
               <Loading />
             ) : Object.keys(sideData).length === 0 ? (
