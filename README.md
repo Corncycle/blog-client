@@ -2,4 +2,4 @@
 
 The front-end for my single-page blog, built with React and Tailwind.
 
-Live: https://blog.calebstromberg.com
+Live: https://blog.corncycle.com
