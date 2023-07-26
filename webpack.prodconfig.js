@@ -7,7 +7,7 @@ module.exports = merge(common, {
   mode: 'production',
   plugins: [
     new webpack.DefinePlugin({
-      API_ACCESS_POINT: JSON.stringify('https://api.calebstromberg.com'),
+      API_ACCESS_POINT: JSON.stringify('https://api.corncycle.com'),
     }),
     new CopyPlugin({
       patterns: [
