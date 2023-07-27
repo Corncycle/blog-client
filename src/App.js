@@ -42,6 +42,10 @@ const App = () => {
                 element={<PostFull location={location} />}
               />
               <Route
+                path="/posts/:slug/edit"
+                element={<div>{`Trying to edit ${location}`}</div>}
+              />
+              <Route
                 path="/*"
                 element={
                   <div>

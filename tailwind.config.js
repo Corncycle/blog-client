@@ -6,6 +6,7 @@ module.exports = {
       fontFamily: {
         sans: ['Roboto', 'sans-serif'],
         fjalla: ['"Fjalla One"', 'sans-serif'],
+        serif: ['"PT Serif"', 'serif'],
       },
       'max-w': {
         'custom-wide': '32rem',

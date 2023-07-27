@@ -6,7 +6,82 @@
   background-color: rgb(206, 206, 206);
 }
 
+.post-body-view {
+  line-height: 1.8;
+}
+
+.post-body-view h1,
+.post-body-view h2,
+.post-body-view h3,
+.post-body-view h4 {
+  font-weight: bold;
+  font-family: 'Roboto', sans-serif;
+}
+
 .post-body-view h1 {
   font-size: 2rem;
-  font-weight: bold;
+}
+
+.post-body-view h2 {
+  font-size: 1.5rem;
+}
+
+.post-body-view h3 {
+  font-size: 1.17rem;
+}
+
+.post-body-view blockquote {
+  border-left: 10px solid #ccc;
+  background: #f9f9f9;
+  margin: 0.5rem 10px;
+  padding: 0.5rem 10px;
+}
+
+.post-body-view ol,
+.post-body-view ul {
+  padding-block-start: 5px;
+  padding-block-end: 5px;
+  padding-inline-start: 2rem;
+}
+
+.post-body-view ol {
+  list-style-type: decimal;
+}
+
+.post-body-view ul {
+  list-style-type: disc;
+}
+
+.post-body-view ul ul {
+  list-style: circle;
+}
+
+.post-body-view hr {
+  margin: 1rem 0;
+}
+
+.post-body-view a {
+  color: brown;
+  text-decoration: underline;
+}
+
+.post-body-view img {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.post-body-view pre:has(code) {
+  display: inline-block;
+
+  border-radius: 8px;
+  padding: 8px;
+  background-color: #4d4d4d;
+  color: white;
+
+  line-height: 1.4;
+  font-family: Consolas, ui-monospace, SFMono-Regular, Menlo, Monaco,
+    'Liberation Mono', 'Courier New', monospace;
+  font-size: 0.9rem;
 }
