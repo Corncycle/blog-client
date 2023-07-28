@@ -1,5 +1,4 @@
 import React from 'react'
-import Loading from './Loading'
 import PostBlurb from './PostBlurb'
 
 export default function HomeContentPosts({ posts }) {

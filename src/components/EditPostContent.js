@@ -79,7 +79,11 @@ export default function EditPostContent() {
     )
   } else {
     return (
-      <div className={disableInput ? 'opacity-50 pointer-events-none' : ''}>
+      <div
+        className={
+          'm-8 ' + (disableInput ? 'opacity-50 pointer-events-none' : '')
+        }
+      >
         <h2>Note: Authorization is required to edit a post.</h2>
         <form
           onSubmit={async (e) => {
@@ -132,6 +136,7 @@ export default function EditPostContent() {
               value={subtitle}
               setter={setSubtitle}
               label="Subtitle"
+              isTextArea={true}
               required={true}
             />
           </div>
@@ -140,6 +145,7 @@ export default function EditPostContent() {
               value={body}
               setter={setBody}
               label="Body"
+              isTextArea={true}
               isLarge={true}
               required={true}
             />

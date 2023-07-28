@@ -26,7 +26,13 @@ export default function HomeContent() {
   return (
     <div className="w-full flex justify-center flex-col">
       {loadingPosts ? (
-        <Loading />
+        <div className="flex justify-center">
+          <Loading
+            size="large"
+            message="Retrieving recent posts..."
+            className="pt-8"
+          />
+        </div>
       ) : posts.length ? (
         <HomeContentPosts posts={posts} />
       ) : (

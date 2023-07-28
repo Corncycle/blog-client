@@ -34,7 +34,7 @@ const App = () => {
       <div>
         <TopBar></TopBar>
         <div className="relative flex flex-col-reverse lg:block">
-          <div className="block max-w-3xl m-auto">
+          <div className="block max-w-3xl w-full m-auto">
             <Routes>
               <Route path="/" element={<HomeContent />} />
               <Route path="/posts/new" element={<NewPostContent />} />
@@ -56,9 +56,9 @@ const App = () => {
               />
             </Routes>
           </div>
-          <div className="lg:absolute lg:right-0 lg:top-0 lg:w-48">
+          <div className="lg:absolute lg:right-0 lg:top-0 lg:w-48 p-2 bg-white">
             {loadingSideData ? (
-              <Loading />
+              <Loading size="small" message="Loading..." />
             ) : Object.keys(sideData).length === 0 ? (
               <ErrorDisplay message="Failed to retrieve monthly data" />
             ) : (

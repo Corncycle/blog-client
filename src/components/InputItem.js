@@ -4,6 +4,7 @@ export default function InputItem({
   value,
   setter,
   label,
+  isTextArea,
   isLarge,
   required,
   isPassword,
@@ -18,13 +19,13 @@ export default function InputItem({
       <label htmlFor={label} className="uppercase text-sm font-light">
         {label}
       </label>
-      {isLarge ? (
+      {isTextArea ? (
         <textarea
           value={value}
           name={label}
           id={label}
           required={required}
-          rows={10}
+          rows={isLarge ? 10 : 2}
           className={'p-2 border-1 border-slate-300 rounded-md'}
           onChange={handleChange}
         ></textarea>

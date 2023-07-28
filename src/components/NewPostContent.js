@@ -113,6 +113,7 @@ export default function NewPostContent() {
               value={subtitle}
               setter={setSubtitle}
               label="Subtitle"
+              isTextArea={true}
               required={true}
             />
           </div>
@@ -121,6 +122,7 @@ export default function NewPostContent() {
               value={body}
               setter={setBody}
               label="Body"
+              isTextArea={true}
               isLarge={true}
               required={true}
             />

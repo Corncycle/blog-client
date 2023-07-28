@@ -48,25 +48,27 @@ export default function SideBarMonth({ year, month, count }) {
       >
         {monthsLookup[month] + ' ' + year + ' (' + count + ')'}
       </summary>
-      {isLoading || posts.length === 0 ? (
-        <Loading />
-      ) : posts.length === 0 ? (
-        <ErrorDisplay message="blah" />
-      ) : (
-        <div>
-          {posts.map((post, i) => {
-            return (
-              <Link
-                to={`posts/${post.slug}`}
-                className="block text-blue-700 underline -indent-4 ml-6"
-                key={year * 1000 + month * 10 + i}
-              >
-                {post.title}
-              </Link>
-            )
-          })}
-        </div>
-      )}
+      <div className="-indent-4 ml-6">
+        {isLoading || posts.length === 0 ? (
+          <Loading size="small" message="Loading..." />
+        ) : posts.length === 0 ? (
+          <ErrorDisplay message="blah" />
+        ) : (
+          <div>
+            {posts.map((post, i) => {
+              return (
+                <Link
+                  to={`posts/${post.slug}`}
+                  className="block text-blue-700 underline"
+                  key={year * 1000 + month * 10 + i}
+                >
+                  {post.title}
+                </Link>
+              )
+            })}
+          </div>
+        )}
+      </div>
     </details>
   )
 }

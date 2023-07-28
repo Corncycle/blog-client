@@ -31,7 +31,7 @@ export default function PostFull({ location }) {
   return (
     <div className="w-full flex justify-center flex-col">
       {loadingPost ? (
-        <Loading />
+        <Loading size="large" message="Retrieving post..." className="pt-8" />
       ) : post.title && post.body ? (
         <div className="w-full flex flex-col">
           <PostHeader message={post.title} />
