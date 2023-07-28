@@ -10,6 +10,14 @@
   line-height: 1.8;
 }
 
+.post-body-view p:not(:last-child) {
+  margin-bottom: 1.5rem;
+}
+
+.post-body-view blockquote p {
+  margin-bottom: 0;
+}
+
 .post-body-view h1,
 .post-body-view h2,
 .post-body-view h3,

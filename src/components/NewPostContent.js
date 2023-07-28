@@ -130,7 +130,7 @@ export default function NewPostContent() {
           <div className="flex flex-col">
             <span>Preview:</span>
             <div
-              className="post-body-view font-serif drop-shadow-md"
+              className="post-body-view font-serif"
               dangerouslySetInnerHTML={{ __html: preview }}
             />
           </div>

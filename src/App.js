@@ -30,7 +30,7 @@ const App = () => {
   }, [])
 
   return (
-    <div className="w-full">
+    <div className="w-full mb-10">
       <div>
         <TopBar></TopBar>
         <div className="relative flex flex-col-reverse lg:block">

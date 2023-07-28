@@ -7,7 +7,14 @@ export default function PostBlurb({ post }) {
   return (
     <div className="w-full flex flex-col">
       <PostHeader message={post.title} to={`posts/${post.slug}`} />
-      <PostBody message={post.subtitle} />
+      <PostBody
+        message={post.subtitle}
+        append={
+          <Link to={`posts/${post.slug}`} className="text-brown underline">
+            continue reading...
+          </Link>
+        }
+      />
     </div>
   )
 }

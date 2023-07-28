@@ -97,7 +97,7 @@ export default function EditPostContent() {
               authorization,
               title,
               slug: slugify(title),
-              subtitle,
+              subtitle: compileWithRichMarkdown(subtitle),
               body: preview,
               rawbody: body,
             }
@@ -153,7 +153,7 @@ export default function EditPostContent() {
           <div className="flex flex-col">
             <span>Preview:</span>
             <div
-              className="post-body-view"
+              className="post-body-view font-serif"
               dangerouslySetInnerHTML={{ __html: preview }}
             />
           </div>
