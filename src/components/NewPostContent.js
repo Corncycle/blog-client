@@ -56,7 +56,11 @@ export default function NewPostContent() {
     )
   } else {
     return (
-      <div className={disableInput ? 'opacity-50 pointer-events-none' : ''}>
+      <div
+        className={
+          'p-8 w-full' + (disableInput ? 'opacity-50 pointer-events-none' : '')
+        }
+      >
         <h2>Note: Authorization is required to create a new post.</h2>
         <form
           onSubmit={async (e) => {

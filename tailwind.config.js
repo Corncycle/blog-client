@@ -14,6 +14,9 @@ module.exports = {
       textIndent: {
         reverse: '-1rem',
       },
+      borderWidth: {
+        1: '1px',
+      },
     },
   },
   plugins: [],

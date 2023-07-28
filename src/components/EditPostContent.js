@@ -4,6 +4,7 @@ import { getPath, patchPath, postPath, slugify } from '../util'
 import { compileWithRichMarkdown } from '../parser/rich-markdown'
 import debounce from 'lodash.debounce'
 import { useParams } from 'react-router-dom'
+import BlogButton from './BlogButton'
 
 export default function EditPostContent() {
   const [disableInput, setDisableInput] = useState(false)
@@ -59,7 +60,7 @@ export default function EditPostContent() {
           {result.error && <h3>Error</h3>}
           {result.error && <div>{result.error}</div>}
         </div>
-        <button
+        <BlogButton
           onClick={(e) => {
             e.preventDefault()
             if (result.message) {
@@ -73,7 +74,7 @@ export default function EditPostContent() {
           }}
         >
           Return to Form
-        </button>
+        </BlogButton>
       </div>
     )
   } else {
@@ -150,7 +151,7 @@ export default function EditPostContent() {
               dangerouslySetInnerHTML={{ __html: preview }}
             />
           </div>
-          <button>Update Post</button>
+          <BlogButton>Update Post</BlogButton>
         </form>
       </div>
     )
