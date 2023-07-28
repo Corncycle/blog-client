@@ -8,7 +8,7 @@ export default function InputItem({
   required,
   isPassword,
 }) {
-  const inputAreaStyles = 'p-2 bg-yellow-200'
+  const inputAreaStyles = 'p-2 border-1 border-slate-100'
   const handleChange = (e) => {
     setter((v) => e.target.value)
   }
@@ -24,7 +24,8 @@ export default function InputItem({
           name={label}
           id={label}
           required={required}
-          className={inputAreaStyles}
+          rows={10}
+          className={'p-2 border-1 border-indigo-400'}
           onChange={handleChange}
         ></textarea>
       ) : (

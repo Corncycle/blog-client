@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import InputItem from './InputItem'
-import { postPath, slugify } from '../util'
+import { getPath, patchPath, postPath, slugify } from '../util'
 import { compileWithRichMarkdown } from '../parser/rich-markdown'
 import debounce from 'lodash.debounce'
+import { useParams } from 'react-router-dom'
 
 export default function EditPostContent() {
   const [disableInput, setDisableInput] = useState(false)
@@ -14,7 +15,11 @@ export default function EditPostContent() {
   const [subtitle, setSubtitle] = useState('')
   const [body, setBody] = useState('')
 
+  const [postId, setPostId] = useState(-1)
+
   const [preview, setPreview] = useState('')
+
+  let { slug } = useParams()
 
   const handlePreview = useCallback(
     debounce((body) => {
@@ -22,6 +27,24 @@ export default function EditPostContent() {
     }, 500),
     [],
   )
+
+  useEffect(() => {
+    ;(async function () {
+      try {
+        const data = await getPath(`/posts/${slug}`)
+        if (!data.title || !data.subtitle || !data.id) {
+          throw new Error('Failed to load post')
+        }
+
+        setTitle(data.title)
+        setSubtitle(data.subtitle)
+        setBody(data.rawbody || data.body) // support old posts that only stored body and not rawbody
+        setPostId(data.id)
+      } catch (err) {
+        console.log(err)
+      }
+    })()
+  }, [])
 
   useEffect(() => {
     handlePreview(body)
@@ -56,7 +79,7 @@ export default function EditPostContent() {
   } else {
     return (
       <div className={disableInput ? 'opacity-50 pointer-events-none' : ''}>
-        <h2>Note: Authorization is required to create a new post.</h2>
+        <h2>Note: Authorization is required to edit a post.</h2>
         <form
           onSubmit={async (e) => {
             e.preventDefault()
@@ -71,13 +94,13 @@ export default function EditPostContent() {
               slug: slugify(title),
               subtitle,
               body: preview,
+              rawbody: body,
             }
 
             setDisableInput(true)
 
-            let response
             try {
-              const res = await postPath('/posts/new', reqbody)
+              const res = await patchPath(`/posts/${slug}`, reqbody)
               setResult(res)
             } catch (err) {
               setResult({ error: 'Failed to reach database' })
@@ -127,7 +150,7 @@ export default function EditPostContent() {
               dangerouslySetInnerHTML={{ __html: preview }}
             />
           </div>
-          <button>Make post</button>
+          <button>Update Post</button>
         </form>
       </div>
     )

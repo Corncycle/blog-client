@@ -8,6 +8,7 @@ import { getPath } from './util'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import PostFull from './components/PostFull'
 import NewPostContent from './components/NewPostContent'
+import EditPostContent from './components/EditPostContent'
 
 const App = () => {
   const location = useLocation()
@@ -43,7 +44,7 @@ const App = () => {
               />
               <Route
                 path="/posts/:slug/edit"
-                element={<div>{`Trying to edit ${location}`}</div>}
+                element={<EditPostContent location={location} />}
               />
               <Route
                 path="/*"

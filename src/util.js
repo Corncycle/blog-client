@@ -26,6 +26,23 @@ export async function postPath(path, reqbody) {
   }
 }
 
+export async function patchPath(path, reqbody) {
+  try {
+    console.log(`Making PATCH request to ${API_ACCESS_POINT}${path}`)
+    const res = await fetch(`${API_ACCESS_POINT}${path}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(reqbody),
+    })
+    const data = await res.json()
+    return data
+  } catch (err) {
+    throw err
+  }
+}
+
 // This slugify function is due to github user 'codeguy'
 // https://gist.github.com/codeguy/6684588
 export function slugify(str) {

@@ -3,6 +3,7 @@ import InputItem from './InputItem'
 import { postPath, slugify } from '../util'
 import { compileWithRichMarkdown } from '../parser/rich-markdown'
 import debounce from 'lodash.debounce'
+import BlogButton from './BlogButton'
 
 export default function NewPostContent() {
   const [disableInput, setDisableInput] = useState(false)
@@ -36,7 +37,7 @@ export default function NewPostContent() {
           {result.error && <h3>Error</h3>}
           {result.error && <div>{result.error}</div>}
         </div>
-        <button
+        <BlogButton
           onClick={(e) => {
             e.preventDefault()
             if (result.message) {
@@ -50,7 +51,7 @@ export default function NewPostContent() {
           }}
         >
           Return to Form
-        </button>
+        </BlogButton>
       </div>
     )
   } else {
@@ -69,13 +70,13 @@ export default function NewPostContent() {
               authorization,
               title,
               slug: slugify(title),
-              subtitle,
+              subtitle: compileWithRichMarkdown(subtitle),
               body: preview,
+              rawbody: body,
             }
 
             setDisableInput(true)
 
-            let response
             try {
               const res = await postPath('/posts/new', reqbody)
               setResult(res)
@@ -123,11 +124,11 @@ export default function NewPostContent() {
           <div className="flex flex-col">
             <span>Preview:</span>
             <div
-              className="post-body-view"
+              className="post-body-view font-serif drop-shadow-md"
               dangerouslySetInnerHTML={{ __html: preview }}
             />
           </div>
-          <button>Make post</button>
+          <BlogButton>Make post</BlogButton>
         </form>
       </div>
     )
