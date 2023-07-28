@@ -482,8 +482,17 @@ video {
 .collapse {
   visibility: collapse;
 }
+.absolute {
+  position: absolute;
+}
 .relative {
   position: relative;
+}
+.left-0 {
+  left: 0px;
+}
+.m-8 {
+  margin: 2rem;
 }
 .m-auto {
   margin: auto;
@@ -503,11 +512,61 @@ video {
 .flex {
   display: flex;
 }
+.h-1 {
+  height: 0.25rem;
+}
+.h-full {
+  height: 100%;
+}
 .w-full {
   width: 100%;
 }
 .max-w-3xl {
   max-width: 48rem;
+}
+.max-w-sm {
+  max-width: 24rem;
+}
+@keyframes loading-bar-right {
+
+  0% {
+    right: 100%;
+  }
+
+  100% {
+    right: 0%;
+  }
+}
+@keyframes loading-bar-left {
+
+  0% {
+    left: 0%;
+  }
+
+  100% {
+    left: 100%;
+  }
+}
+@keyframes fade-in-out {
+
+  0% {
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+.animate-loading-bar-all {
+  animation: loading-bar-right 1.5s cubic-bezier(0, 1, 1, 0.5) infinite, loading-bar-left 1.5s cubic-bezier(0, 0.5, 1, 0) infinite, fade-in-out 1.5s infinite;
 }
 .cursor-default {
   cursor: default;
@@ -523,8 +582,14 @@ video {
 .flex-col-reverse {
   flex-direction: column-reverse;
 }
+.items-center {
+  align-items: center;
+}
 .justify-center {
   justify-content: center;
+}
+.gap-4 {
+  gap: 1rem;
 }
 .rounded-lg {
   border-radius: 0.5rem;
@@ -539,6 +604,10 @@ video {
   --tw-border-opacity: 1;
   border-color: rgb(203 213 225 / var(--tw-border-opacity));
 }
+.bg-gray-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(107 114 128 / var(--tw-bg-opacity));
+}
 .bg-orange-300 {
   --tw-bg-opacity: 1;
   background-color: rgb(253 186 116 / var(--tw-bg-opacity));
@@ -550,6 +619,10 @@ video {
 .bg-orange-700 {
   --tw-bg-opacity: 1;
   background-color: rgb(194 65 12 / var(--tw-bg-opacity));
+}
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 .bg-yellow-400 {
   --tw-bg-opacity: 1;
@@ -580,6 +653,9 @@ video {
 .py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;
+}
+.pt-8 {
+  padding-top: 2rem;
 }
 .-indent-4 {
   text-indent: -1rem;
@@ -612,6 +688,14 @@ video {
   --tw-text-opacity: 1;
   color: rgb(29 78 216 / var(--tw-text-opacity));
 }
+.text-brown {
+  --tw-text-opacity: 1;
+  color: rgb(165 42 42 / var(--tw-text-opacity));
+}
+.text-gray-500 {
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity));
+}
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
@@ -628,7 +712,7 @@ video {
 }
 
 .sidebar {
-  background-color: rgb(206, 206, 206);
+  /* background-color: rgb(206, 206, 206);*/
 }
 
 .post-body-view {
