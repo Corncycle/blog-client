@@ -17,7 +17,7 @@ export default function GoogleOAuthWidget({
           onSuccess={(credentialsResponse) => {
             const creds = jwtDecode(credentialsResponse.credential)
             creds.rawJwt = credentialsResponse.credential
-            console.log(creds)
+            localStorage.setItem('googleCredentials', JSON.stringify(creds))
             setCredentials(creds)
           }}
         />

@@ -18,6 +18,7 @@ const App = () => {
 
   const [credentials, setCredentials] = useState(null)
 
+  // populate sidebar data
   useEffect(() => {
     ;(async function () {
       try {
@@ -29,6 +30,22 @@ const App = () => {
         setLoadingSideData(false)
       }
     })()
+  }, [])
+
+  // use credentials if we have some in localstorage and they haven't expired
+  useEffect(() => {
+    const storedCreds = JSON.parse(localStorage.getItem('googleCredentials'))
+    if (storedCreds?.exp) {
+      console.log('Expiration date of your stored credentials:')
+      console.log(new Date(storedCreds.exp * 1000)) // google's unix timestamps are to the second
+      if (new Date() <= new Date(storedCreds.exp * 1000)) {
+        console.log("our token hasn't expired")
+        setCredentials(storedCreds)
+      } else {
+        console.log('our token has expired')
+        localStorage.setItem('googleCredentials', null)
+      }
+    }
   }, [])
 
   return (

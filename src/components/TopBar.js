@@ -17,6 +17,7 @@ export default function TopBar({ credentials, setCredentials }) {
             <button
               className="text-zinc-700 bg-white border-zinc-200 border-1 text-sm px-2 pr-3 py-1.5 rounded-md shadow-lg hover:shadow-md hover:bg-orange-100 flex flex-row items-center gap-2"
               onClick={() => {
+                localStorage.setItem('googleCredentials', null)
                 setCredentials(null)
               }}
               title={credentials?.given_name}
