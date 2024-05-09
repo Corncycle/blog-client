@@ -16,6 +16,8 @@ const App = () => {
   const [sideData, setSideData] = useState({})
   const [loadingSideData, setLoadingSideData] = useState(true)
 
+  const [credentials, setCredentials] = useState(null)
+
   useEffect(() => {
     ;(async function () {
       try {
@@ -32,7 +34,10 @@ const App = () => {
   return (
     <div className="w-full mb-10">
       <div>
-        <TopBar></TopBar>
+        <TopBar
+          credentials={credentials}
+          setCredentials={setCredentials}
+        ></TopBar>
         <div className="relative flex flex-col-reverse lg:block">
           <div className="block max-w-3xl w-full m-auto">
             <Routes>
