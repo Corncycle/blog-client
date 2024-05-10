@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom'
 import PostHeader from './PostHeader'
 import PostBody from './PostBody'
 
-export default function PostFull({ location }) {
+export default function PostFull({ location, isAdmin }) {
   const [post, setPost] = useState({})
   const [loadingPost, setLoadingPost] = useState(true)
 
@@ -34,7 +34,7 @@ export default function PostFull({ location }) {
         <Loading size="large" message="Retrieving post..." className="pt-8" />
       ) : post.title && post.body ? (
         <div className="w-full flex flex-col">
-          <PostHeader message={post.title} />
+          <PostHeader message={post.title} showActions={isAdmin} />
           <PostBody message={post.body} />
         </div>
       ) : post.error ? (

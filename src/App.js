@@ -17,6 +17,7 @@ const App = () => {
   const [loadingSideData, setLoadingSideData] = useState(true)
 
   const [credentials, setCredentials] = useState(null)
+  const [isAdmin, setIsAdmin] = useState(false)
 
   // populate sidebar data
   useEffect(() => {
@@ -48,12 +49,24 @@ const App = () => {
     }
   }, [])
 
+  // on the frontend, we set admin if the email associated with the signed-in account is in the admin whitelist, for simplicity
+  // on the backend, we verify the jwt before allowing admin actions to be executed, for security
+  useEffect(() => {
+    const whitelist = ['corncycle@gmail.com']
+    if (whitelist.includes(credentials?.email)) {
+      setIsAdmin(true)
+    } else {
+      setIsAdmin(false)
+    }
+  }, [credentials])
+
   return (
     <div className="w-full mb-10">
       <div>
         <TopBar
           credentials={credentials}
           setCredentials={setCredentials}
+          isAdmin={isAdmin}
         ></TopBar>
         <div className="relative flex flex-col-reverse lg:block">
           <div className="block max-w-3xl w-full m-auto">
@@ -62,7 +75,7 @@ const App = () => {
               <Route path="/posts/new" element={<NewPostContent />} />
               <Route
                 path="/posts/:slug"
-                element={<PostFull location={location} />}
+                element={<PostFull location={location} isAdmin={isAdmin} />}
               />
               <Route
                 path="/posts/:slug/edit"
