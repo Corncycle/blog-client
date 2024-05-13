@@ -37,13 +37,11 @@ const App = () => {
   useEffect(() => {
     const storedCreds = JSON.parse(localStorage.getItem('googleCredentials'))
     if (storedCreds?.exp) {
-      console.log('Expiration date of your stored credentials:')
-      console.log(new Date(storedCreds.exp * 1000)) // google's unix timestamps are to the second
       if (new Date() <= new Date(storedCreds.exp * 1000)) {
-        console.log("our token hasn't expired")
+        // token is still active (google's unix timestamps are to the second)
         setCredentials(storedCreds)
       } else {
-        console.log('our token has expired')
+        // token expired
         localStorage.setItem('googleCredentials', null)
       }
     }
@@ -72,14 +70,22 @@ const App = () => {
           <div className="block max-w-3xl w-full m-auto">
             <Routes>
               <Route path="/" element={<HomeContent />} />
-              <Route path="/posts/new" element={<NewPostContent />} />
+              <Route
+                path="/posts/new"
+                element={<NewPostContent credentials={credentials} />}
+              />
               <Route
                 path="/posts/:slug"
                 element={<PostFull location={location} isAdmin={isAdmin} />}
               />
               <Route
                 path="/posts/:slug/edit"
-                element={<EditPostContent location={location} />}
+                element={
+                  <EditPostContent
+                    location={location}
+                    credentials={credentials}
+                  />
+                }
               />
               <Route
                 path="/*"

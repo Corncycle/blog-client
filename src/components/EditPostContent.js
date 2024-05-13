@@ -6,12 +6,11 @@ import debounce from 'lodash.debounce'
 import { useParams } from 'react-router-dom'
 import BlogButton from './BlogButton'
 
-export default function EditPostContent() {
+export default function EditPostContent({ credentials }) {
   const [disableInput, setDisableInput] = useState(false)
   const [showingResult, setShowingResult] = useState(false)
   const [result, setResult] = useState({})
 
-  const [authorization, setAuthorization] = useState('')
   const [title, setTitle] = useState('')
   const [subtitle, setSubtitle] = useState('')
   const [body, setBody] = useState('')
@@ -63,12 +62,6 @@ export default function EditPostContent() {
         <BlogButton
           onClick={(e) => {
             e.preventDefault()
-            if (result.message) {
-              setAuthorization('')
-              setTitle('')
-              setSubtitle('')
-              setBody('')
-            }
             setShowingResult(false)
             setResult({})
           }}
@@ -84,22 +77,21 @@ export default function EditPostContent() {
           'm-8 ' + (disableInput ? 'opacity-50 pointer-events-none' : '')
         }
       >
-        <h2>Note: Authorization is required to edit a post.</h2>
         <form
           onSubmit={async (e) => {
             e.preventDefault()
-            if (!authorization || !title || !subtitle || !body) {
+            if (!title || !subtitle || !body) {
               // all fields must be filled, don't proceed
               return
             }
 
             const reqbody = {
-              authorization,
               title,
-              slug: slugify(title),
+              slug: slug,
               subtitle: compileWithRichMarkdown(subtitle),
               body: preview,
               rawbody: body,
+              jwt: credentials.rawJwt,
             }
 
             setDisableInput(true)
@@ -114,15 +106,6 @@ export default function EditPostContent() {
             setDisableInput(false)
           }}
         >
-          <div className="flex flex-col">
-            <InputItem
-              value={authorization}
-              setter={setAuthorization}
-              label="authorization"
-              required={true}
-              isPassword={true}
-            />
-          </div>
           <div className="flex flex-col">
             <InputItem
               value={title}
