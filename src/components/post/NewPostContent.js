@@ -1,12 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import InputItem from './InputItem'
-import { getPath, patchPath, postPath, slugify } from '../util'
-import { compileWithRichMarkdown } from '../parser/rich-markdown'
+import InputItem from '../util/InputItem'
+import { postPath, slugify } from '../../util'
+import { compileWithRichMarkdown } from '../../parser/rich-markdown'
 import debounce from 'lodash.debounce'
-import { useParams } from 'react-router-dom'
-import BlogButton from './BlogButton'
+import BlogButton from '../util/BlogButton'
 
-export default function EditPostContent({ credentials }) {
+export default function NewPostContent({ credentials }) {
   const [disableInput, setDisableInput] = useState(false)
   const [showingResult, setShowingResult] = useState(false)
   const [result, setResult] = useState({})
@@ -15,11 +14,7 @@ export default function EditPostContent({ credentials }) {
   const [subtitle, setSubtitle] = useState('')
   const [body, setBody] = useState('')
 
-  const [postId, setPostId] = useState(-1)
-
   const [preview, setPreview] = useState('')
-
-  let { slug } = useParams()
 
   const handlePreview = useCallback(
     debounce((body) => {
@@ -27,24 +22,6 @@ export default function EditPostContent({ credentials }) {
     }, 500),
     [],
   )
-
-  useEffect(() => {
-    ;(async function () {
-      try {
-        const data = await getPath(`/posts/${slug}`)
-        if (!data.title || !data.subtitle || !data.id) {
-          throw new Error('Failed to load post')
-        }
-
-        setTitle(data.title)
-        setSubtitle(data.subtitle)
-        setBody(data.rawbody || data.body) // support old posts that only stored body and not rawbody
-        setPostId(data.id)
-      } catch (err) {
-        console.log(err)
-      }
-    })()
-  }, [])
 
   useEffect(() => {
     handlePreview(body)
@@ -74,7 +51,7 @@ export default function EditPostContent({ credentials }) {
     return (
       <div
         className={
-          'm-8 ' + (disableInput ? 'opacity-50 pointer-events-none' : '')
+          'p-8 w-full' + (disableInput ? 'opacity-50 pointer-events-none' : '')
         }
       >
         <form
@@ -87,7 +64,7 @@ export default function EditPostContent({ credentials }) {
 
             const reqbody = {
               title,
-              slug: slug,
+              slug: slugify(title),
               subtitle: compileWithRichMarkdown(subtitle),
               body: preview,
               rawbody: body,
@@ -97,7 +74,7 @@ export default function EditPostContent({ credentials }) {
             setDisableInput(true)
 
             try {
-              const res = await patchPath(`/posts/${slug}`, reqbody)
+              const res = await postPath('/posts/new', reqbody)
               setResult(res)
             } catch (err) {
               setResult({ error: 'Failed to reach database' })
@@ -140,7 +117,7 @@ export default function EditPostContent({ credentials }) {
               dangerouslySetInnerHTML={{ __html: preview }}
             />
           </div>
-          <BlogButton>Update Post</BlogButton>
+          <BlogButton>Make post</BlogButton>
         </form>
       </div>
     )

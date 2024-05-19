@@ -1,5 +1,5 @@
 import React from 'react'
-import PostBlurb from './PostBlurb'
+import PostBlurb from '../post/PostBlurb'
 
 export default function HomeContentPosts({ posts }) {
   return (

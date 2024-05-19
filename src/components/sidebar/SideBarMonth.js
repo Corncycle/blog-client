@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import Loading from './Loading'
-import ErrorDisplay from './ErrorDisplay'
-import { getPath } from '../util'
+import Loading from '../util/Loading'
+import ErrorDisplay from '../util/ErrorDisplay'
+import { getPath } from '../../util'
 import { Link } from 'react-router-dom'
 
 const monthsLookup = {

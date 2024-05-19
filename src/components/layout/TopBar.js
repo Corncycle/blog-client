@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import GoogleOAuthWidget from './GoogleOAuthWidget'
-import BarButton from './BarButton'
+import GoogleOAuthWidget from '../GoogleOAuthWidget'
+import BarButton from '../BarButton'
 
 export default function TopBar({ credentials, setCredentials, isAdmin }) {
   return (

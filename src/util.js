@@ -75,3 +75,28 @@ export function debounce(func, timeout = 300) {
     }, timeout)
   }
 }
+
+const months = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'June',
+  'July',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
+]
+
+export function dateToFormatted(dateOrTimestamp) {
+  try {
+    const date =
+      typeof dateOrTimestamp === 'string'
+        ? new Date(dateOrTimestamp)
+        : dateOrTimestamp
+    return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`
+  } catch (e) {}
+}

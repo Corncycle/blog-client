@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import EditLogo from '../../public/assets/edit.svg'
-import DeleteLogo from '../../public/assets/delete.svg'
+import EditLogo from '../../../public/assets/edit.svg'
+import DeleteLogo from '../../../public/assets/delete.svg'
 
 export default function PostHeader({ message, to, showActions }) {
   return (

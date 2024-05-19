@@ -1,9 +1,9 @@
 import React, { useState, useEffect, Suspense, use } from 'react'
-import Loading from './Loading'
+import Loading from '../util/Loading'
 import HomeContentPosts from './HomeContentPosts'
-import CommentSection from './CommentSection'
-import { getPath } from '../util'
-import ErrorDisplay from './ErrorDisplay'
+import CommentSection from '../comment/CommentSection'
+import { getPath } from '../../util'
+import ErrorDisplay from '../util/ErrorDisplay'
 
 export default function HomeContent() {
   const [posts, setPosts] = useState([])

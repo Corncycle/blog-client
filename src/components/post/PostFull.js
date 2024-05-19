@@ -1,12 +1,18 @@
 import React, { useState, useEffect, Suspense, use } from 'react'
-import Loading from './Loading'
-import { getPath } from '../util'
-import ErrorDisplay from './ErrorDisplay'
+import Loading from '../util/Loading'
+import { getPath } from '../../util'
+import ErrorDisplay from '../util/ErrorDisplay'
 import { useParams } from 'react-router-dom'
 import PostHeader from './PostHeader'
 import PostBody from './PostBody'
+import CommentSection from '../comment/CommentSection'
 
-export default function PostFull({ location, isAdmin }) {
+export default function PostFull({
+  location,
+  isAdmin,
+  credentials,
+  setCredentials,
+}) {
   const [post, setPost] = useState({})
   const [loadingPost, setLoadingPost] = useState(true)
 
@@ -32,10 +38,16 @@ export default function PostFull({ location, isAdmin }) {
     <div className="w-full flex justify-center flex-col">
       {loadingPost ? (
         <Loading size="large" message="Retrieving post..." className="pt-8" />
-      ) : post.title && post.body ? (
+      ) : post.title_html && post.body_html ? (
         <div className="w-full flex flex-col">
-          <PostHeader message={post.title} showActions={isAdmin} />
-          <PostBody message={post.body} />
+          <PostHeader message={post.title_html} showActions={isAdmin} />
+          <PostBody date={post.created_at} message={post.body_html} />
+          <hr className="border-gray-300"></hr>
+          <CommentSection
+            slug={slug}
+            credentials={credentials}
+            setCredentials={setCredentials}
+          />
         </div>
       ) : post.error ? (
         <div>{post.error}</div>

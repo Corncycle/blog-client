@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import TopBar from './components/TopBar'
-import SideBar from './components/SideBar'
-import HomeContent from './components/HomeContent'
-import Loading from './components/Loading'
-import ErrorDisplay from './components/ErrorDisplay'
+import TopBar from './components/layout/TopBar'
+import SideBar from './components/sidebar/SideBar'
+import HomeContent from './components/layout/HomeContent'
+import Loading from './components/util/Loading'
+import ErrorDisplay from './components/util/ErrorDisplay'
 import { getPath } from './util'
 import { Route, Routes, useLocation } from 'react-router-dom'
-import PostFull from './components/PostFull'
-import NewPostContent from './components/NewPostContent'
-import EditPostContent from './components/EditPostContent'
+import PostFull from './components/post/PostFull'
+import NewPostContent from './components/post/NewPostContent'
+import EditPostContent from './components/post/EditPostContent'
 
 const App = () => {
   const location = useLocation()
@@ -76,7 +76,14 @@ const App = () => {
               />
               <Route
                 path="/posts/:slug"
-                element={<PostFull location={location} isAdmin={isAdmin} />}
+                element={
+                  <PostFull
+                    location={location}
+                    isAdmin={isAdmin}
+                    credentials={credentials}
+                    setCredentials={setCredentials}
+                  />
+                }
               />
               <Route
                 path="/posts/:slug/edit"
