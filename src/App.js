@@ -25,6 +25,10 @@ const App = () => {
       try {
         const data = await getPath('/postsByMonth')
 
+        if (data?.error) {
+          throw new Error(data.error)
+        }
+
         setSideData(data)
         setLoadingSideData(false)
       } catch (err) {
@@ -48,7 +52,7 @@ const App = () => {
   }, [])
 
   // on the frontend, we set admin if the email associated with the signed-in account is in the admin whitelist, for simplicity
-  // on the backend, we verify the jwt before allowing admin actions to be executed, for security
+  // on the backend, obviously we verify the jwt before allowing admin actions to be executed, for security
   useEffect(() => {
     const whitelist = ['corncycle@gmail.com']
     if (whitelist.includes(credentials?.email)) {

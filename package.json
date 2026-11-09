@@ -24,7 +24,7 @@
     "autoprefixer": "^10.4.14",
     "babel-loader": "^8.0.6",
     "concurrently": "^8.2.0",
-    "copy-webpack-plugin": "^11.0.0",
+    "copy-webpack-plugin": "^14.0.0",
     "eslint": "^8.44.0",
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-import": "^2.27.5",
@@ -36,11 +36,11 @@
     "postcss": "^8.4.25",
     "postcss-cli": "^10.1.0",
     "prettier": "3.0.0",
-    "react-svg-loader": "^3.0.3",
+    "react-svg-loader": "^3.0.0",
     "tailwindcss": "^3.4.3",
     "webpack": "^5.88.1",
     "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^4.15.1",
+    "webpack-dev-server": "^6.1.0",
     "webpack-merge": "^5.9.0"
   },
   "dependencies": {
@@ -51,7 +51,7 @@
     "marked": "^5.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.14.1",
+    "react-router-dom": "^7.18.5",
     "style-loader": "^3.3.3"
   }
 }
