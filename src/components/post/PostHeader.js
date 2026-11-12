@@ -8,11 +8,13 @@ export default function PostHeader({ message, to, showActions }) {
     <div className="w-full mt-4 px-8 py-4 bg-orange-300 relative">
       <div className="block text-2xl font-bold">
         {to ? (
-          <Link to={to} className="text-brown">
-            {message}
-          </Link>
+          <Link
+            to={to}
+            dangerouslySetInnerHTML={{ __html: message }}
+            className="text-brown"
+          ></Link>
         ) : (
-          message
+          <div dangerouslySetInnerHTML={{ __html: message }} />
         )}
         {showActions && (
           <div className="absolute top-5 right-6 flex flex-row gap-3">

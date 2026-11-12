@@ -5,51 +5,26 @@ import { getPath } from '../../util'
 import { Link } from 'react-router-dom'
 
 const monthsLookup = {
-  1: 'January',
-  2: 'February',
-  3: 'March',
-  4: 'April',
-  5: 'May',
-  6: 'June',
-  7: 'July',
-  8: 'August',
-  9: 'September',
-  10: 'October',
-  11: 'November',
-  12: 'December',
+  0: 'January',
+  1: 'February',
+  2: 'March',
+  3: 'April',
+  4: 'May',
+  5: 'June',
+  6: 'July',
+  7: 'August',
+  8: 'September',
+  9: 'October',
+  10: 'November',
+  11: 'December',
 }
 
-export default function SideBarMonth({ year, month, count }) {
-  const [posts, setPosts] = useState([])
-  const [isLoading, setIsLoading] = useState(false)
-
-  useEffect(() => {
-    if (isLoading) {
-      ;(async function () {
-        try {
-          const postsData = await getPath(
-            `/postsByMonth/${year}${month.padStart(2, '0')}`,
-          )
-          setPosts(postsData.reverse())
-          setIsLoading(false)
-        } catch (err) {}
-      })()
-    }
-  }, [isLoading])
-
+export default function SideBarMonth({ year, month, count, posts }) {
   return (
     <details>
-      <summary
-        onClick={(e) => {
-          if (!isLoading && posts.length == 0) {
-            setIsLoading(true)
-          }
-        }}
-      >
-        {monthsLookup[month] + ' ' + year + ' (' + count + ')'}
-      </summary>
+      <summary>{monthsLookup[month] + ' ' + year + ' (' + count + ')'}</summary>
       <div className="-indent-4 ml-6">
-        {isLoading || posts.length === 0 ? (
+        {false || posts.length === 0 ? (
           <Loading size="small" message="Loading..." />
         ) : posts.length === 0 ? (
           <ErrorDisplay message="blah" />
@@ -58,12 +33,11 @@ export default function SideBarMonth({ year, month, count }) {
             {posts.map((post, i) => {
               return (
                 <Link
-                  to={`posts/${post.slug}`}
+                  to={`posts/${post[0]}`}
                   className="block text-blue-700 underline"
                   key={year * 1000 + month * 10 + i}
-                >
-                  {post.title}
-                </Link>
+                  dangerouslySetInnerHTML={{ __html: post[1] }}
+                ></Link>
               )
             })}
           </div>

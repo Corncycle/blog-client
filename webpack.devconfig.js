@@ -7,7 +7,9 @@ module.exports = merge(common, {
   devtool: 'eval-cheap-source-map',
   plugins: [
     new webpack.DefinePlugin({
-      API_ACCESS_POINT: JSON.stringify('http://localhost:3000'),
+      API_ACCESS_POINT: JSON.stringify(
+        'https://wdfs7edsah.execute-api.us-west-2.amazonaws.com',
+      ),
     }),
   ],
 })

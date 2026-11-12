@@ -11,7 +11,7 @@ export default function NewPostContent({ credentials }) {
   const [result, setResult] = useState({})
 
   const [title, setTitle] = useState('')
-  const [subtitle, setSubtitle] = useState('')
+  const [blurb, setBlurb] = useState('')
   const [body, setBody] = useState('')
 
   const [preview, setPreview] = useState('')
@@ -57,24 +57,26 @@ export default function NewPostContent({ credentials }) {
         <form
           onSubmit={async (e) => {
             e.preventDefault()
-            if (!title || !subtitle || !body) {
+            if (!title || !blurb || !body) {
               // all fields must be filled, don't proceed
               return
             }
 
             const reqbody = {
-              title,
               slug: slugify(title),
-              subtitle: compileWithRichMarkdown(subtitle),
-              body: preview,
-              rawbody: body,
+              titleHtml: compileWithRichMarkdown(title),
+              titleMd: title,
+              blurbHtml: compileWithRichMarkdown(blurb),
+              blurbMd: blurb,
+              bodyHtml: compileWithRichMarkdown(body),
+              bodyMd: body,
               jwt: credentials.rawJwt,
             }
 
             setDisableInput(true)
 
             try {
-              const res = await postPath('/posts/new', reqbody)
+              const res = await postPath('/posts', reqbody)
               setResult(res)
             } catch (err) {
               setResult({ error: 'Failed to reach database' })
@@ -93,9 +95,9 @@ export default function NewPostContent({ credentials }) {
           </div>
           <div className="flex flex-col">
             <InputItem
-              value={subtitle}
-              setter={setSubtitle}
-              label="Subtitle"
+              value={blurb}
+              setter={setBlurb}
+              label="Blurb"
               isTextArea={true}
               required={true}
             />

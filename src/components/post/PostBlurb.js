@@ -6,10 +6,10 @@ import PostBody from './PostBody'
 export default function PostBlurb({ post }) {
   return (
     <div className="w-full flex flex-col">
-      <PostHeader message={post.title_html} to={`posts/${post.slug}`} />
+      <PostHeader message={post.titleHtml} to={`posts/${post.slug}`} />
       <PostBody
-        date={post.created_at}
-        message={post.blurb_html}
+        date={post.createdAt}
+        message={post.blurbHtml}
         append={
           <Link to={`posts/${post.slug}`} className="text-brown underline">
             continue reading...

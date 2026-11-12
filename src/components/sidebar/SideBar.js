@@ -7,21 +7,22 @@ export default function SideBar({ data }) {
   for (const year of years) {
     const monthNodes = []
     const sortedMonths = Object.keys(data[year]).sort(
-      (a, b) => Number(b) - Number(a),
+      (a, b) => Number(a) - Number(b),
     )
     for (const month of sortedMonths) {
       monthNodes.push(
         <SideBarMonth
           year={year}
           month={month}
-          count={data[year][month]}
+          count={data[year][month].length}
           key={year * 100 + month}
+          posts={data[year][month]}
         />,
       )
     }
 
     const yearTotal = Object.values(data[year]).reduce(
-      (a, b) => Number(a) + Number(b),
+      (curr, next) => curr + next.length,
       0,
     )
     const yearNode = (

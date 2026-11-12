@@ -38,15 +38,16 @@ export default function PostFull({
     <div className="w-full flex justify-center flex-col">
       {loadingPost ? (
         <Loading size="large" message="Retrieving post..." className="pt-8" />
-      ) : post.title_html && post.body_html ? (
+      ) : post.titleHtml && post.bodyHtml ? (
         <div className="w-full flex flex-col">
-          <PostHeader message={post.title_html} showActions={isAdmin} />
-          <PostBody date={post.created_at} message={post.body_html} />
+          <PostHeader message={post.titleHtml} showActions={isAdmin} />
+          <PostBody date={post.createdAt} message={post.bodyHtml} />
           <hr className="border-gray-300"></hr>
           <CommentSection
             slug={slug}
             credentials={credentials}
             setCredentials={setCredentials}
+            newCommentsDisabled={true}
           />
         </div>
       ) : post.error ? (

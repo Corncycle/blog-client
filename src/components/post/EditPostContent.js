@@ -12,7 +12,7 @@ export default function EditPostContent({ credentials }) {
   const [result, setResult] = useState({})
 
   const [title, setTitle] = useState('')
-  const [subtitle, setSubtitle] = useState('')
+  const [blurb, setBlurb] = useState('')
   const [body, setBody] = useState('')
 
   const [postId, setPostId] = useState(-1)
@@ -31,14 +31,14 @@ export default function EditPostContent({ credentials }) {
   useEffect(() => {
     ;(async function () {
       try {
-        const data = await getPath(`/posts/${slug}`)
-        if (!data.title || !data.subtitle || !data.id) {
+        const data = await getPath(`/posts/${slug}?withMarkdown=true`)
+        if (!data.titleMd || !data.blurbMd || !data.bodyMd) {
           throw new Error('Failed to load post')
         }
 
-        setTitle(data.title)
-        setSubtitle(data.subtitle)
-        setBody(data.rawbody || data.body) // support old posts that only stored body and not rawbody
+        setTitle(data.titleMd)
+        setBlurb(data.blurbMd)
+        setBody(data.bodyMd)
         setPostId(data.id)
       } catch (err) {
         setShowingResult(true)
@@ -81,17 +81,19 @@ export default function EditPostContent({ credentials }) {
         <form
           onSubmit={async (e) => {
             e.preventDefault()
-            if (!title || !subtitle || !body) {
+            if (!title || !blurb || !body) {
               // all fields must be filled, don't proceed
               return
             }
 
             const reqbody = {
-              title,
-              slug: slug,
-              subtitle: compileWithRichMarkdown(subtitle),
-              body: preview,
-              rawbody: body,
+              slug,
+              titleHtml: compileWithRichMarkdown(title),
+              titleMd: title,
+              blurbHtml: compileWithRichMarkdown(blurb),
+              blurbMd: blurb,
+              bodyHtml: compileWithRichMarkdown(body),
+              bodyMd: body,
               jwt: credentials.rawJwt,
             }
 
@@ -117,9 +119,9 @@ export default function EditPostContent({ credentials }) {
           </div>
           <div className="flex flex-col">
             <InputItem
-              value={subtitle}
-              setter={setSubtitle}
-              label="Subtitle"
+              value={blurb}
+              setter={setBlurb}
+              label="Blurb"
               isTextArea={true}
               required={true}
             />
