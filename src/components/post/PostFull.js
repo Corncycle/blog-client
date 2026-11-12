@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom'
 import PostHeader from './PostHeader'
 import PostBody from './PostBody'
 import CommentSection from '../comment/CommentSection'
+import { useAdaptiveAnimation } from '../util/customHooks'
 
 export default function PostFull({
   location,
@@ -15,6 +16,8 @@ export default function PostFull({
 }) {
   const [post, setPost] = useState({})
   const [loadingPost, setLoadingPost] = useState(true)
+  const { shouldShowLoadingAnimation, alertDoneLoading } =
+    useAdaptiveAnimation()
 
   let { slug } = useParams()
 
@@ -23,12 +26,16 @@ export default function PostFull({
       if (slug !== post.slug) {
         setLoadingPost(true)
         try {
+          // await new Promise((res) => setTimeout(res, 2000))
+
           const data = await getPath(`/posts/${slug}`)
           setPost(data)
 
           setLoadingPost(false)
+          alertDoneLoading(true)
         } catch (err) {
           setLoadingPost(false)
+          alertDoneLoading(true)
         }
       }
     })()
@@ -37,9 +44,13 @@ export default function PostFull({
   return (
     <div className="w-full flex justify-center flex-col">
       {loadingPost ? (
-        <Loading size="large" message="Retrieving post..." className="pt-8" />
+        <Loading size="large" message="Retrieving post" className="pt-8" />
       ) : post.titleHtml && post.bodyHtml ? (
-        <div className="w-full flex flex-col">
+        <div
+          className={`w-full flex flex-col ${
+            shouldShowLoadingAnimation ? 'animate-fade-in' : ''
+          }`}
+        >
           <PostHeader message={post.titleHtml} showActions={isAdmin} />
           <PostBody date={post.createdAt} message={post.bodyHtml} />
           <hr className="border-gray-300"></hr>

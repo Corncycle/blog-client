@@ -1,9 +1,9 @@
 import React from 'react'
 import PostBlurb from '../post/PostBlurb'
 
-export default function HomeContentPosts({ posts }) {
+export default function HomeContentPosts({ posts, showLoadingAnimation }) {
   return (
-    <div className="w-full">
+    <div className={`w-full ${showLoadingAnimation ? 'animate-fade-in' : ''}`}>
       {posts.map((post, i) => {
         return <PostBlurb post={post} key={i} />
       })}
