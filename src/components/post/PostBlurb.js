@@ -10,11 +10,7 @@ export default function PostBlurb({ post }) {
       <PostBody
         date={post.createdAt}
         message={post.blurbHtml}
-        append={
-          <Link to={`posts/${post.slug}`} className="text-brown underline">
-            continue reading...
-          </Link>
-        }
+        append={<Link to={`posts/${post.slug}`}>continue reading...</Link>}
       />
     </div>
   )

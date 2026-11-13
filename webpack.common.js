@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
+const { CopyPlugin } = require('webpack')
 
 module.exports = {
   entry: './index.js',
@@ -33,7 +34,10 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: [
+          'style-loader',
+          { loader: 'css-loader', options: { url: false } },
+        ],
       },
       {
         test: /\.svg/,
@@ -54,6 +58,13 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'public', 'index.html'),
+    }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: ['static', 'public/assets'],
+        },
+      ],
     }),
   ],
 }

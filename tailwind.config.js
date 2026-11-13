@@ -10,6 +10,11 @@ module.exports = {
       },
       colors: {
         brown: 'brown',
+        theme1: '#faf0ca',
+        theme2: '#f4d35e',
+        theme3: '#ee964b',
+        theme4: '#f95738',
+        theme5: '#0d3b66',
       },
       'max-w': {
         'custom-wide': '32rem',

@@ -6,6 +6,11 @@
   /* background-color: rgb(206, 206, 206);*/
 }
 
+.border-pattern {
+  background-image: url('border-img.png');
+  background-size: 16px 16px;
+}
+
 .post-body-view {
   line-height: 1.8;
 }
@@ -69,7 +74,7 @@
 }
 
 .post-body-view a {
-  color: brown;
+  color: #f95738;
   text-decoration: underline;
 }
 

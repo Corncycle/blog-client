@@ -9,12 +9,6 @@ module.exports = merge(common, {
     new webpack.DefinePlugin({
       API_ACCESS_POINT: JSON.stringify('https://api.corncycle.com'),
     }),
-    new CopyPlugin({
-      patterns: [
-        {
-          from: 'static',
-        },
-      ],
-    }),
+    ,
   ],
 })

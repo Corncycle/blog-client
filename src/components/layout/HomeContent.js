@@ -46,7 +46,7 @@ export default function HomeContent() {
           showLoadingAnimation={shouldShowLoadingAnimation}
         />
       ) : (
-        <ErrorDisplay message="Failed to retrieve recent posts from database" />
+        <ErrorDisplay message="Failed to retrieve recent posts" />
       )}
     </div>
   )

@@ -21,7 +21,7 @@ export default function Loading({ size, message, className }) {
   } else if (size === 'large') {
     return (
       <div
-        className={`${className} flex flex-col items-center w-full gap-4 animate-fade-in-slide-up`}
+        className={`${className} flex flex-col items-center w-full gap-4 delay-500 animate-fade-in-slide-up`}
       >
         <div className="font-serif text-gray-500">
           {shownMessage}
