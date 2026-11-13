@@ -7,7 +7,11 @@
 }
 
 .border-pattern {
-  background-image: url('border-img.png');
+  /* be sure to use routes beginning with "/" so the path is relative to the root
+   * of the webpage: if we open the page from a subroute like /posts/my-post then
+   * relative routes can mess up in url() because this stylesheet is injected by webpack
+   */
+  background-image: url('/border-img.png');
   background-size: 16px 16px;
 }
 
