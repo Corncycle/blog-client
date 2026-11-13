@@ -62,10 +62,14 @@ export default function PostFull({
           />
         </div>
       ) : post.error ? (
-        <div>{post.error}</div>
+        <ErrorDisplay
+          className="mt-4"
+          message={`Failed to retrieve post '${slug}'`}
+        />
       ) : (
         <ErrorDisplay
-          message={`Failed to retrieve post '${slug}' from database`}
+          className="mt-4"
+          message={`Failed to retrieve post '${slug}'`}
         />
       )}
     </div>
