@@ -5,8 +5,8 @@ import DeleteLogo from '../../../public/assets/delete.svg'
 
 export default function PostHeader({ message, to, showActions }) {
   return (
-    <div className="p-3 border-pattern shadow-md">
-      <div className={`w-full px-6 py-3 bg-theme4 relative`}>
+    <div className="p-4 border-pattern shadow-md">
+      <div className={`w-full px-4 py-2 bg-theme4 relative`}>
         <div className="block text-2xl font-bold">
           {to ? (
             <Link

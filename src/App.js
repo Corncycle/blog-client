@@ -70,7 +70,7 @@ const App = () => {
           setCredentials={setCredentials}
           isAdmin={isAdmin}
         ></TopBar>
-        <div className="relative flex flex-col-reverse lg:block">
+        <div className="relative flex flex-col-reverse lg:block lg:my-4">
           <div className="block max-w-3xl w-full m-auto">
             <Routes>
               <Route path="/" element={<HomeContent />} />

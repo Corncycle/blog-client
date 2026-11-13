@@ -11,9 +11,15 @@
    * of the webpage: if we open the page from a subroute like /posts/my-post then
    * relative routes can mess up in url() because this stylesheet is injected by webpack
    */
-  background-image: url('/border-img.png');
-  background-size: 16px 16px;
+  background-image: url('/bg-2.png');
+  background-size: 48px 48px;
 }
+
+/* .topbar {
+  background-image: url('/bg-2.png');
+  background-size: 48px 48px;
+} */
+
 
 .post-body-view {
   line-height: 1.8;
