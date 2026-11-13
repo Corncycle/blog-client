@@ -101,9 +101,10 @@ const App = () => {
               <Route
                 path="/*"
                 element={
-                  <div>
-                    {`Unknown path '${location.pathname}' Try selecting a post from the sidebar, or returning the home page.`}
-                  </div>
+                  <ErrorDisplay
+                    className="pt-4"
+                    message={`Unknown path ${location.pathname}. Try selecting a post from the sidebar, or returning to the home page.`}
+                  />
                 }
               />
             </Routes>
