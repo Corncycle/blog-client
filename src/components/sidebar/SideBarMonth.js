@@ -34,7 +34,7 @@ export default function SideBarMonth({ year, month, count, posts }) {
               return (
                 <Link
                   to={`posts/${post[0]}`}
-                  className="block text-blue-700 underline"
+                  className="block text-blue-700 visited:text-purple-600 underline"
                   key={year * 1000 + month * 10 + i}
                   dangerouslySetInnerHTML={{ __html: post[1] }}
                 ></Link>

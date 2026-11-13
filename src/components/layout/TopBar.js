@@ -5,7 +5,7 @@ import BarButton from '../BarButton'
 
 export default function TopBar({ credentials, setCredentials, isAdmin }) {
   return (
-    <div className="w-full flex justify-center bg-theme4 py-4 relative z-10 shadow-md">
+    <div className="w-full flex justify-center bg-theme4 py-4 relative z-10 mb-2 shadow-md">
       <h1>
         <Link
           to="/"

@@ -109,7 +109,7 @@ const App = () => {
               />
             </Routes>
           </div>
-          <div className="relative lg:absolute lg:right-0 lg:top-0 lg:w-48 p-2 bg-white">
+          <div className="relative lg:absolute lg:right-0 lg:top-0 lg:w-48 px-2 pb-2 bg-white">
             {loadingSideData ? (
               <Loading size="small" message="Loading..." />
             ) : Object.keys(sideData).length === 0 ? (

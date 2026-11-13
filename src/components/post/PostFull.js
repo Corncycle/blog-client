@@ -42,7 +42,7 @@ export default function PostFull({
   }, [location])
 
   return (
-    <div className="w-full flex justify-center flex-col">
+    <div className="w-full flex justify-center flex-col lg:my-2">
       {loadingPost ? (
         <Loading size="large" message="Retrieving post" className="pt-8" />
       ) : post.titleHtml && post.bodyHtml ? (

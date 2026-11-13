@@ -5,7 +5,7 @@ import PostBody from './PostBody'
 
 export default function PostBlurb({ post }) {
   return (
-    <div className="w-full flex flex-col">
+    <div className="w-full flex flex-col lg:my-2">
       <PostHeader message={post.titleHtml} to={`posts/${post.slug}`} />
       <PostBody
         date={post.createdAt}
